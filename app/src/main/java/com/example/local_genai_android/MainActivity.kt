@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.local_genai_android.ui.theme.LocalgenaiandroidTheme
+import com.google.ai.edge.litertlm.Conversation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,9 @@ class MainActivity : ComponentActivity() {
                     Greeting("Android")
                 }
             }
+
+            val converstation: Conversation
+            converstation.sendMessage()
         }
     }
 }
