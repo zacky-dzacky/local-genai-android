@@ -1,14 +1,15 @@
 [versions]
 activity-compose = "1.8.0"
-android-gradle-plugin = "8.3.0"
+android-gradle-plugin = "8.8.2"
 core-ktx = "1.12.0"
 espresso-core = "3.5.1"
 junit = "4.13.2"
 junit-ext = "1.1.5"
-kotlin = "1.9.22"
+kotlin = "2.1.0"
 lifecycle-runtime-ktx = "2.6.2"
 litertlm = "0.9.0-alpha01"
-compose-bom = "2023.08.00"
+compose-bom = "2025.11.01"
+compose-compiler = "2.1.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -30,3 +31,4 @@ litertlm = { group = "com.google.ai.edge.litertlm", name = "litertlm-android", v
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
