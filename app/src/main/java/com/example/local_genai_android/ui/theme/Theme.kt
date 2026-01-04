@@ -9,7 +9,11 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -36,6 +40,33 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
+val LocalCustomColors = staticCompositionLocalOf { CustomColors() }
+
+@Immutable
+data class CustomColors(
+    val appTitleGradientColors: List<Color> = listOf(),
+    val tabHeaderBgColor: Color = Color.Transparent,
+    val taskCardBgColor: Color = Color.Transparent,
+    val taskBgColors: List<Color> = listOf(),
+    val taskBgGradientColors: List<List<Color>> = listOf(),
+    val taskIconColors: List<Color> = listOf(),
+    val taskIconShapeBgColor: Color = Color.Transparent,
+    val homeBottomGradient: List<Color> = listOf(),
+    val userBubbleBgColor: Color = Color.Transparent,
+    val agentBubbleBgColor: Color = Color.Transparent,
+    val linkColor: Color = Color.Transparent,
+    val successColor: Color = Color.Transparent,
+    val recordButtonBgColor: Color = Color.Transparent,
+    val waveFormBgColor: Color = Color.Transparent,
+    val modelInfoIconColor: Color = Color.Transparent,
+    val warningContainerColor: Color = Color.Transparent,
+    val warningTextColor: Color = Color.Transparent,
+    val errorContainerColor: Color = Color.Transparent,
+    val errorTextColor: Color = Color.Transparent,
+)
+
+val MaterialTheme.customColors: CustomColors
+    @Composable @ReadOnlyComposable get() = LocalCustomColors.current
 
 @Composable
 fun LocalgenaiandroidTheme(

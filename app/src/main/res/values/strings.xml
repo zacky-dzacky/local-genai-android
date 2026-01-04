@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">local-genai-android</string>
+    <string name="listening">Listening...</string>
+    <string name="hold_down_to_talk">Hold to talk</string>
+    <string name="chat_generic_agent_name">Model</string>
+    <string name="chat_textinput_placeholder">Type message…</string>
+    <string name="cd_switch_to_voice">Switch to voice</string>
+    <string name="cd_switch_to_keyboard">Switch to keyboard</string>
+    <string name="cd_prompt_input_text_field">Prompt input</string>
+    <string name="text_input_placeholder_llm_chat">Type prompt...</string>
+    <string name="cd_send_prompt_icon">Send prompt</string>
+    <string name="chat_agent_agent_name">Agent</string>
 </resources>
