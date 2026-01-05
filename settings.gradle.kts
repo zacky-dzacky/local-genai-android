@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "local-genai-android"
 include(":app")
+include(":shared")
