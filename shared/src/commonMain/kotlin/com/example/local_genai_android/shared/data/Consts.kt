@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.local_genai_android.data
+package com.example.local_genai_android.shared.data
 
 import androidx.compose.ui.unit.dp
-import com.example.local_genai_android.shared.data.Accelerator
 
 // Keys used to send/receive data to Work.
 const val KEY_MODEL_URL = "KEY_MODEL_URL"

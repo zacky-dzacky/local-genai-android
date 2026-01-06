@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.gallery.data
+package com.example.local_genai_android.shared.data
 
 import androidx.annotation.StringRes
-import com.example.local_genai_android.shared.data.CategoryInfo
 import com.google.ai.edge.gallery.R
 
 /**

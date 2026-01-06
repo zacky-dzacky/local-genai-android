@@ -14,16 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.local_genai_android.data
+package com.example.local_genai_android.shared.data
 
 import android.content.Context
-import com.example.local_genai_android.shared.data.ConfigKey
-import com.example.local_genai_android.shared.data.Model
-import com.example.local_genai_android.shared.data.ModelDataFile
-import com.example.local_genai_android.shared.data.ModelDownloadStatusType
-import com.example.local_genai_android.shared.data.PromptTemplate
-import com.example.local_genai_android.shared.data.ValueType
-import com.example.local_genai_android.shared.data.convertValueToTargetType
 import java.io.File
 
 data class ModelDataFile(

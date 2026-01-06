@@ -19,7 +19,7 @@ package com.example.local_genai_android.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.example.local_genai_android.data.Task
+import com.example.local_genai_android.shared.data.Task
 import com.example.local_genai_android.ui.theme.customColors
 
 @Composable

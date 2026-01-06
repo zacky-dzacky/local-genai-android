@@ -39,13 +39,10 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.local_genai_android.R
-import com.example.local_genai_android.data.Task
-import com.example.local_genai_android.ui.getTaskIconColor
 import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
 
 @Composable
 fun TextAndVoiceInput(
-    task: Task,
     processing: Boolean,
     holdToDictateViewModel: HoldToDictateViewModel,
     onDone: (String) -> Unit,
@@ -70,10 +67,7 @@ fun TextAndVoiceInput(
                 Modifier.clip(CircleShape)
                     .then(
                         if (!processing) {
-                            Modifier.clickable {
-                                curTextInput = ""
-                                textInputMode = !textInputMode
-                            }
+                            Modifier.clickable { textInputMode = !textInputMode }
                         } else {
                             Modifier
                         }
@@ -99,7 +93,6 @@ fun TextAndVoiceInput(
         }
 
         AnimatedContent(targetState = textInputMode) { showTextInput ->
-            // Text field.
             if (showTextInput) {
                 val cdPromptInput = stringResource(R.string.cd_prompt_input_text_field)
                 Row(
@@ -119,7 +112,6 @@ fun TextAndVoiceInput(
                         value = curTextInput,
                         enabled = !processing,
                         onValueChange = { curTextInput = it },
-//                        textStyle = bodyLargeNarrow.copy(color = MaterialTheme.colorScheme.onSurface),
                         cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
                         modifier =
                             Modifier.padding(start = 16.dp, end = 8.dp).padding(vertical = 2.dp).semantics {
@@ -154,7 +146,7 @@ fun TextAndVoiceInput(
                                                 }
                                             )
                                             .graphicsLayer { alpha = if (!processing) 1f else 0.5f }
-                                            .background(getTaskIconColor(task = task))
+                                            .background(MaterialTheme.colorScheme.primary)
                                             .size(36.dp),
                                     contentAlignment = Alignment.Center,
                                 ) {
@@ -170,10 +162,8 @@ fun TextAndVoiceInput(
                     )
                 }
             }
-            // Hold to talk.
             else {
                 HoldToDictate(
-                    task = task,
                     viewModel = holdToDictateViewModel,
                     onDone = { text -> onDone(text) },
                     onAmplitudeChanged = { onAmplitudeChanged(it) },

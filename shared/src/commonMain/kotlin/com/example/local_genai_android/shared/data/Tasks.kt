@@ -1,13 +1,10 @@
-package com.example.local_genai_android.data
+package com.example.local_genai_android.shared.data
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.local_genai_android.R
-import com.example.local_genai_android.shared.data.BuiltInTaskId
-import com.example.local_genai_android.shared.data.CategoryInfo
-import com.example.local_genai_android.shared.data.Model
 
 /**
  * Data class for a task displayed on the home screen

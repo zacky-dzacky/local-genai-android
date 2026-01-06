@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.gallery.data
+package com.example.local_genai_android.shared.data
 
-import com.example.local_genai_android.shared.data.Accelerator
-import com.example.local_genai_android.shared.data.DEFAULT_ACCELERATORS
-import com.example.local_genai_android.shared.data.DEFAULT_MAX_TOKEN
-import com.example.local_genai_android.shared.data.DEFAULT_TEMPERATURE
-import com.example.local_genai_android.shared.data.DEFAULT_TOPK
-import com.example.local_genai_android.shared.data.DEFAULT_TOPP
-import com.example.local_genai_android.shared.data.Config
-import com.example.local_genai_android.shared.data.ConfigEditorType
-import com.example.local_genai_android.shared.data.ConfigKey
-import com.example.local_genai_android.shared.data.ConfigKeys
-import com.example.local_genai_android.shared.data.LabelConfig
-import com.example.local_genai_android.shared.data.NumberSliderConfig
-import com.example.local_genai_android.shared.data.SegmentedButtonConfig
-import com.example.local_genai_android.shared.data.ValueType
 import kotlin.math.abs
 
 /**
