@@ -26,14 +26,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import com.example.local_genai_android.R
-import com.example.local_genai_android.data.Task
-import com.example.local_genai_android.ui.getTaskBgGradientColors
 import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
 import kotlin.coroutines.cancellation.CancellationException
 
 @Composable
 fun HoldToDictate(
-    task: Task,
     viewModel: HoldToDictateViewModel,
     onDone: (String) -> Unit,
     onAmplitudeChanged: (Int) -> Unit,
@@ -98,8 +95,7 @@ fun HoldToDictate(
                 )
                 .clip(CircleShape)
                 .graphicsLayer { alpha = if (enabled) 1f else 0.5f }
-                .background(getTaskBgGradientColors(task = task)[1]),
-//                .height(48.dp),
+                .background(Color.Red), // Using a default color now
             contentAlignment = Alignment.Center,
         ) {
             Text(
