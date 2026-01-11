@@ -4,6 +4,11 @@ import android.content.Context
 import android.util.Log
 import com.example.local_genai_android.shared.data.Accelerator
 import com.example.local_genai_android.shared.data.ConfigKeys
+import com.example.local_genai_android.shared.data.DEFAULT_TOPK
+import com.example.local_genai_android.shared.data.DEFAULT_MAX_TOKEN
+import com.example.local_genai_android.shared.data.DEFAULT_TEMPERATURE
+import com.example.local_genai_android.shared.data.DEFAULT_TOPP
+import com.example.local_genai_android.shared.data.Model
 import com.google.ai.edge.litertlm.Backend
 import com.google.ai.edge.litertlm.Conversation
 import com.google.ai.edge.litertlm.ConversationConfig
@@ -46,9 +51,7 @@ object LLMChatModelHelper {
         val accelerator =
             model.getStringConfigValue(key = ConfigKeys.ACCELERATOR, defaultValue = Accelerator.GPU.label)
         Log.d(TAG, "Initializing...")
-        val shouldEnableImage = supportImage
-        val shouldEnableAudio = supportAudio
-        Log.d(TAG, "Enable image: $shouldEnableImage, enable audio: $shouldEnableAudio")
+        Log.d(TAG, "Enable image: $supportImage, enable audio: $supportAudio")
         val preferredBackend =
             when (accelerator) {
                 Accelerator.CPU.label -> Backend.CPU
@@ -62,8 +65,8 @@ object LLMChatModelHelper {
             EngineConfig(
                 modelPath = modelPath,
                 backend = preferredBackend,
-                visionBackend = if (shouldEnableImage) Backend.GPU else null, // must be GPU for Gemma 3n
-                audioBackend = if (shouldEnableAudio) Backend.CPU else null, // must be CPU for Gemma 3n
+                visionBackend = if (supportImage) Backend.GPU else null, // must be GPU for Gemma 3n
+                audioBackend = if (supportAudio) Backend.CPU else null, // must be CPU for Gemma 3n
                 maxNumTokens = maxTokens,
                 cacheDir =
                     if (modelPath.startsWith("/data/local/tmp"))

@@ -1,5 +1,6 @@
 package com.example.local_genai_android.shared
 
+import com.example.local_genai_android.shared.data.Model
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 
 // A placeholder for a tool that the AI model can use.
@@ -10,6 +11,7 @@ data class Action(val name: String, val args: Map<String, String>)
 
 expect class GenAiService {
     suspend fun processUserPrompt(
+        model: Model,
         prompt: String,
         tools: List<Tool>,
         onResult: (List<Action>) -> Unit,

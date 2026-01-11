@@ -1,5 +1,7 @@
 package com.example.local_genai_android.shared
 
+import com.example.local_genai_android.shared.data.EMPTY_MODEL
+import com.example.local_genai_android.shared.data.Model
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +33,9 @@ class SharedViewModel(
             // In a real app, the tools would be defined more dynamically.
             val tools = listOf(Tool(name = "someTool"))
 
+            val model = EMPTY_MODEL
             genAiService.processUserPrompt(
+                model = model,
                 prompt = userPrompt,
                 tools = tools,
                 onResult = { actions ->

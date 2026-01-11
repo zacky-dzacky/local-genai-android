@@ -1,7 +1,10 @@
 package com.example.local_genai_android.shared
 
+import com.example.local_genai_android.shared.data.Model
+
 actual class GenAiService {
     actual suspend fun processUserPrompt(
+        model: Model,
         prompt: String,
         tools: List<Tool>,
         onResult: (List<Action>) -> Unit,
