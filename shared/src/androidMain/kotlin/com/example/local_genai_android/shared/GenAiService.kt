@@ -2,28 +2,18 @@ package com.example.local_genai_android.shared
 
 import android.content.Context
 import com.example.local_genai_android.shared.data.Model
-import com.google.ai.edge.litertlm.LiteRtlm
-import com.google.ai.edge.litertlm.TaskConfig
+import com.example.local_genai_android.shared.util.LlmModelInstance
+import com.google.ai.edge.litertlm.Content
+import com.google.ai.edge.litertlm.Message
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
 actual class GenAiService(private val context: Context) {
 
-    private var liteRtlm: LiteRtlm? = null
     private val coroutineScope = MainScope()
-
-    init {
-        coroutineScope.launch {
-            try {
-                val taskConfig = TaskConfig.builder()
-                    .setLlmModel(TaskConfig.LlmModel.GEMMA)
-                    .build()
-                liteRtlm = LiteRtlm.create(context, taskConfig)
-            } catch (e: Exception) {
-                // Initialization errors will be handled when processUserPrompt is called.
-            }
-        }
-    }
 
     actual suspend fun processUserPrompt(
         model: Model,
@@ -38,24 +28,33 @@ actual class GenAiService(private val context: Context) {
             return
         }
 
-        coroutineScope.launch {  }
+        coroutineScope.launch(Dispatchers.Default) {
 
-        val service = liteRtlm
-        if (service == null) {
-            onError("AI Service not initialized.")
-            return
-        }
 
-        try {
-            val llmResult = service.process(prompt)
-            if (llmResult != null) {
-                val actions = llmResult.actions().map { Action(it.functionName(), it.args()) }
-                onResult(actions)
-            } else {
-                onResult(emptyList())
+            // Run inference
+            val instance = model.instance as LlmModelInstance
+            val conversation = instance.conversation
+            val contents = mutableListOf<Content>()
+            if (prompt.trim().isNotEmpty()) {
+                contents.add(Content.Text(prompt))
             }
-        } catch (e: Exception) {
-            onError(e.message ?: "An unknown error occurred during processing.")
+
+            conversation
+                .sendMessageAsync(Message.of(contents))
+                .catch {
+//                    Log.e(TAG, "Failed to run inference", it)
+                    onError(it.message ?: "Unknown error")
+                }
+                .onCompletion {
+//                    setProcessing(processing = false)
+//                    onProcessDone()
+//                    resetConversation(model = model, tools = tools)
+                }
+                .collect {
+//                    setProcessing(processing = false)
+//                    appendModelResponse(partialResponse = it.toString())
+                }
+
         }
     }
 
