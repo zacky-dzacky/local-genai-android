@@ -1,4 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -12,6 +12,14 @@ kotlin {
         compilations.all { 
             kotlinOptions { 
                 jvmTarget = "1.8"
+            }
+        }
+    }
+
+    targets.withType<KotlinNativeTarget>().configureEach {
+        compilations.getByName("main").cinterops {
+            val signature by creating {
+                defFile(project.file("src/nativeInterop/cinterop/LiteRTLM.def"))
             }
         }
     }

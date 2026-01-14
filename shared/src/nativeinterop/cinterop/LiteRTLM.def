@@ -1,0 +1,5 @@
+package = com.zarief.litermlm
+headers = engine.h
+
+#compilerOpts = -isysroot $(xcrun --sdk iphoneos --show-sdk-path)
+compilerOpts = -Isrc/nativeInterop/cinterop
