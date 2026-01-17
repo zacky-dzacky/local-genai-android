@@ -16,8 +16,7 @@
 
 package com.example.local_genai_android.shared.data
 
-import androidx.annotation.StringRes
-import com.google.ai.edge.gallery.R
+//import androidx.annotation.StringRes
 
 /**
  * Stores basic info about a Category
@@ -30,7 +29,7 @@ data class CategoryInfo(
   val id: String,
 
   // The string resource id of the label of the resource, for display purpose.
-  @StringRes val labelStringRes: Int? = null,
+//  @StringRes val labelStringRes: Int? = null,
 
   // The string label. It takes precedence over labelStringRes above.
   val label: String? = null,
@@ -38,8 +37,8 @@ data class CategoryInfo(
 
 /** Pre-defined categories. */
 object Category {
-  val LLM = CategoryInfo(id = "llm", labelStringRes = R.string.category_llm)
-  val CLASSICAL_ML = CategoryInfo(id = "classical_ml", labelStringRes = R.string.category_llm)
-  val EXPERIMENTAL =
-    CategoryInfo(id = "experimental", labelStringRes = R.string.category_experimental)
+//  val LLM = CategoryInfo(id = "llm", labelStringRes = R.string.category_llm)
+//  val CLASSICAL_ML = CategoryInfo(id = "classical_ml", labelStringRes = R.string.category_llm)
+//  val EXPERIMENTAL =
+//    CategoryInfo(id = "experimental", labelStringRes = R.string.category_experimental)
 }

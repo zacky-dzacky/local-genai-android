@@ -1,10 +1,10 @@
 package com.example.local_genai_android.shared.data
 
-import androidx.annotation.StringRes
+//import androidx.annotation.StringRes
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.local_genai_android.R
+//import com.example.local_genai_android.R
 
 /**
  * Data class for a task displayed on the home screen
@@ -89,10 +89,10 @@ data class Task(
     //
 
     /** Placeholder text for the name of the agent shown above chat messages. */
-    @StringRes val agentNameRes: Int = R.string.chat_generic_agent_name,
+//    @StringRes val agentNameRes: Int = R.string.chat_generic_agent_name,
 
     /** Placeholder text for the text input field. */
-    @StringRes val textInputPlaceHolderRes: Int = R.string.chat_textinput_placeholder,
+//    @StringRes val textInputPlaceHolderRes: Int = R.string.chat_textinput_placeholder,
 
     // The following fields are managed by the app. Don't need to set manually.
     //

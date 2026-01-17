@@ -11,8 +11,8 @@ class MainApplication : Application() {
         super.onCreate()
 
         initKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
+//            androidLogger()
+//            androidContext(this@MainApplication)
             modules(appModule)
         }
     }
