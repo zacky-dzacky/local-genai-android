@@ -23,20 +23,32 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.local_genai_android.shared.SharedUiState
 import com.example.local_genai_android.shared.SharedViewModel
 import com.example.local_genai_android.shared.StringFormatter
-import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
-import org.koin.androidx.compose.koinViewModel
+import com.example.local_genai_android.shared.di.sharedViewModelModule
 import org.koin.compose.koinInject
+
+//import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
+//import org.koin.androidx.compose.koinViewModel
+//import org.koin.compose.koinInject
 
 @Composable
 fun PromptScreen(
     snackbarHostState: SnackbarHostState,
-    sharedViewModel: SharedViewModel = koinViewModel(),
-    holdToDictateViewModel: HoldToDictateViewModel = koinViewModel(),
+//    sharedViewModel: SharedViewModel = koinViewModel(),
+//    holdToDictateViewModel: HoldToDictateViewModel = koinViewModel(),
     stringFormatter: StringFormatter = koinInject()
 ) {
-    val uiState by sharedViewModel.uiState.collectAsState()
+    val uiState by lazy {
+       SharedUiState(
+           processing = false,
+           generatedText = "",
+           functionCallDetails = emptyList(),
+           noFunctionRecognized = false,
+       )
+    }
+    //sharedViewModel.uiState.collectAsState()
     var clearInputTextTrigger by remember { mutableStateOf(0L) }
     var curAmplitude by remember { mutableStateOf(0) }
 
@@ -61,11 +73,15 @@ fun PromptScreen(
     // Show dialog for critical errors
     if (uiState.criticalError != null) {
         AlertDialog(
-            onDismissRequest = { sharedViewModel.onDialogDismissed() },
+            onDismissRequest = {
+//                sharedViewModel.onDialogDismissed()
+           },
             title = { Text("Error") },
             text = { Text(uiState.criticalError!!) },
             confirmButton = {
-                TextButton(onClick = { sharedViewModel.onDialogDismissed() }) {
+                TextButton(onClick = {
+//                    sharedViewModel.onDialogDismissed()
+                }) {
                     Text("OK")
                 }
             }
@@ -95,9 +111,9 @@ fun PromptScreen(
         ) {
             TextAndVoiceInput(
                 processing = uiState.processing,
-                holdToDictateViewModel = holdToDictateViewModel,
+//                holdToDictateViewModel = , //holdToDictateViewModel,
                 onDone = { text ->
-                    sharedViewModel.processUserPrompt(text)
+//                    sharedViewModel.processUserPrompt(text)
                     clearInputTextTrigger = System.currentTimeMillis()
                 },
                 onAmplitudeChanged = { curAmplitude = it },
