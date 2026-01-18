@@ -18,7 +18,7 @@ package com.google.ai.edge.gallery.data
 
 import androidx.annotation.StringRes
 import com.example.local_genai_android.shared.data.CategoryInfo
-import com.google.ai.edge.gallery.R
+//import com.google.ai.edge.gallery.R
 
 /**
  * Stores basic info about a Category
@@ -39,8 +39,8 @@ data class CategoryInfo(
 
 /** Pre-defined categories. */
 object Category {
-  val LLM = CategoryInfo(id = "llm", labelStringRes = R.string.category_llm)
-  val CLASSICAL_ML = CategoryInfo(id = "classical_ml", labelStringRes = R.string.category_llm)
-  val EXPERIMENTAL =
-    CategoryInfo(id = "experimental", labelStringRes = R.string.category_experimental)
+//  val LLM = CategoryInfo(id = "llm", labelStringRes = R.string.category_llm)
+//  val CLASSICAL_ML = CategoryInfo(id = "classical_ml", labelStringRes = R.string.category_llm)
+//  val EXPERIMENTAL =
+//    CategoryInfo(id = "experimental", labelStringRes = R.string.category_experimental)
 }

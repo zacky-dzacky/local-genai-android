@@ -63,6 +63,9 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.material.icon.extended)
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
     implementation(libs.litertlm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

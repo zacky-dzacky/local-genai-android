@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import com.example.local_genai_android.R
-import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
 import kotlin.coroutines.cancellation.CancellationException
 
 @Composable

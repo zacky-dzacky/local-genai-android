@@ -17,7 +17,7 @@ expect fun platformModule(): Module
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = 
     startKoin {
-        appDeclaration()
+//        appDeclaration()
         modules(sharedViewModelModule, platformModule())
     }
 
