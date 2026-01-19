@@ -36,7 +36,7 @@ import org.koin.compose.koinInject
 @Composable
 fun PromptScreen(
     snackbarHostState: SnackbarHostState,
-//    sharedViewModel: SharedViewModel = koinViewModel(),
+    sharedViewModel: SharedViewModel,
 //    holdToDictateViewModel: HoldToDictateViewModel = koinViewModel(),
     stringFormatter: StringFormatter = koinInject()
 ) {
@@ -48,7 +48,7 @@ fun PromptScreen(
            noFunctionRecognized = false,
        )
     }
-    //sharedViewModel.uiState.collectAsState()
+    sharedViewModel.uiState.collectAsState()
     var clearInputTextTrigger by remember { mutableStateOf(0L) }
     var curAmplitude by remember { mutableStateOf(0) }
 
@@ -74,13 +74,13 @@ fun PromptScreen(
     if (uiState.criticalError != null) {
         AlertDialog(
             onDismissRequest = {
-//                sharedViewModel.onDialogDismissed()
+                sharedViewModel.onDialogDismissed()
            },
             title = { Text("Error") },
             text = { Text(uiState.criticalError!!) },
             confirmButton = {
                 TextButton(onClick = {
-//                    sharedViewModel.onDialogDismissed()
+                    sharedViewModel.onDialogDismissed()
                 }) {
                     Text("OK")
                 }
@@ -113,7 +113,7 @@ fun PromptScreen(
                 processing = uiState.processing,
 //                holdToDictateViewModel = , //holdToDictateViewModel,
                 onDone = { text ->
-//                    sharedViewModel.processUserPrompt(text)
+                    sharedViewModel.processUserPrompt(text)
                     clearInputTextTrigger = System.currentTimeMillis()
                 },
                 onAmplitudeChanged = { curAmplitude = it },

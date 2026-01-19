@@ -1,8 +1,8 @@
 package com.example.local_genai_android.shared
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.local_genai_android.shared.data.EMPTY_MODEL
-import com.example.local_genai_android.shared.data.Model
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
