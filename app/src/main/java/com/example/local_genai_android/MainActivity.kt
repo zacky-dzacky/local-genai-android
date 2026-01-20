@@ -13,7 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.example.local_genai_android.shared.SharedViewModel
+import com.example.local_genai_android.shared.viewmodel.SharedViewModel
 import com.example.local_genai_android.ui.textandvoiceinput.PromptScreen
 import com.example.local_genai_android.ui.theme.LocalgenaiandroidTheme
 import org.koin.android.ext.android.inject

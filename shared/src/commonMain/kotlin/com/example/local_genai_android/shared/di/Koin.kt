@@ -2,7 +2,7 @@
 
 package com.example.local_genai_android.shared.di
 
-import com.example.local_genai_android.shared.SharedViewModel
+import com.example.local_genai_android.shared.viewmodel.SharedViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module

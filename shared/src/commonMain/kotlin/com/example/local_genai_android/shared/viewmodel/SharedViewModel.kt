@@ -1,7 +1,12 @@
-package com.example.local_genai_android.shared
+package com.example.local_genai_android.shared.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.local_genai_android.shared.Action
+import com.example.local_genai_android.shared.GenAiService
+import com.example.local_genai_android.shared.Logger
+import com.example.local_genai_android.shared.StringFormatter
+import com.example.local_genai_android.shared.Tool
 import com.example.local_genai_android.shared.data.EMPTY_MODEL
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
