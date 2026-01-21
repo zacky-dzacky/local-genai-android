@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.example.local_genai_android.shared.HoldToDictateViewModel
 import com.example.local_genai_android.shared.viewmodel.SharedViewModel
 import com.example.local_genai_android.ui.textandvoiceinput.PromptScreen
 import com.example.local_genai_android.ui.theme.LocalgenaiandroidTheme
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val sharedViewModel: SharedViewModel by inject()
+            val holdToDictateViewModel: HoldToDictateViewModel by inject()
             LocalgenaiandroidTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
                 Scaffold(
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text(text = "asdfasdf")
                         PromptScreen(
+                            holdToDictateViewModel = holdToDictateViewModel,
                             snackbarHostState = snackbarHostState,
                             sharedViewModel = sharedViewModel
                         )

@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.local_genai_android.shared.HoldToDictateViewModel
 import com.example.local_genai_android.shared.StringFormatter
 import com.example.local_genai_android.shared.viewmodel.SharedViewModel
 import org.koin.compose.koinInject
@@ -31,7 +32,7 @@ import org.koin.compose.koinInject
 fun PromptScreen(
     snackbarHostState: SnackbarHostState,
     sharedViewModel: SharedViewModel,
-//    holdToDictateViewModel: HoldToDictateViewModel = koinViewModel(),
+    holdToDictateViewModel: HoldToDictateViewModel,
     stringFormatter: StringFormatter = koinInject()
 ) {
     val uiState by sharedViewModel.uiState.collectAsState()
@@ -93,7 +94,7 @@ fun PromptScreen(
         ) {
             TextAndVoiceInput(
                 processing = uiState.processing,
-//                holdToDictateViewModel = , //holdToDictateViewModel,
+                holdToDictateViewModel = holdToDictateViewModel,
                 onDone = { text ->
                     sharedViewModel.processUserPrompt(text)
                     clearInputTextTrigger = System.currentTimeMillis()

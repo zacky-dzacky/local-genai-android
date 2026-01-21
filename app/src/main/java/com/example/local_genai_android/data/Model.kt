@@ -17,6 +17,7 @@
 package com.example.local_genai_android.data
 
 import android.content.Context
+import com.example.local_genai_android.shared.data.Config
 import com.example.local_genai_android.shared.data.ConfigKey
 import com.example.local_genai_android.shared.data.Model
 import com.example.local_genai_android.shared.data.ModelDataFile
@@ -334,7 +335,6 @@ data class ModelDownloadStatus(
     val remainingMs: Long = 0,
 )
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
 // Configs.
 
 val EMPTY_MODEL: Model =

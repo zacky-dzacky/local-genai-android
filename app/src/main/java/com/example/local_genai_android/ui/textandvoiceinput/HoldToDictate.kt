@@ -26,8 +26,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import com.example.local_genai_android.R
+import com.example.local_genai_android.shared.HoldToDictateViewModel
 import kotlin.coroutines.cancellation.CancellationException
 
+@Deprecated("Use HoldToDictateViewModel instead")
 @Composable
 fun HoldToDictate(
     viewModel: HoldToDictateViewModel,
@@ -36,71 +38,71 @@ fun HoldToDictate(
     enabled: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val uiState by viewModel.uiState.collectAsState()
-    var recordAudioPermissionGranted by remember { mutableStateOf(false) }
-    val context = LocalContext.current
-
-    val recordAudioPermissionLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
-                permissionGranted ->
-            if (permissionGranted) {
-                recordAudioPermissionGranted = true
-            }
-        }
-
-    LaunchedEffect(Unit) {
-        // Check permission
-        when (PackageManager.PERMISSION_GRANTED) {
-            // Already got permission.
-            ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) -> {
-                recordAudioPermissionGranted = true
-            }
-
-            // Otherwise, ask for permission
-            else -> {
-                recordAudioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-            }
-        }
-    }
-
-    if (recordAudioPermissionGranted) {
-        Box(
-            modifier =
-                modifier.then(
-                    if (enabled) {
-                        Modifier.pointerInput(Unit) {
-                            detectTapGestures(
-                                onPress = {
-                                    viewModel.startSpeechRecognition(
-                                        onDone = onDone,
-                                        onAmplitudeChanged = onAmplitudeChanged,
-                                    )
-                                    try {
-                                        awaitRelease()
-                                    } catch (e: CancellationException) {
-                                        // Move out of the button to cancel it.
-                                        viewModel.cancelSpeechRecognition()
-                                        return@detectTapGestures
-                                    }
-
-                                    // Release to stop recognition.
-                                    viewModel.stopSpeechRecognition()
-                                }
-                            )
-                        }
-                    } else {
-                        Modifier
-                    }
-                )
-                .clip(CircleShape)
-                .graphicsLayer { alpha = if (enabled) 1f else 0.5f }
-                .background(Color.Red), // Using a default color now
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                stringResource(if (uiState.recognizing) R.string.listening else R.string.hold_down_to_talk),
-                color = Color.White,
-            )
-        }
-    }
+//    val uiState by viewModel.uiState.collectAsState()
+//    var recordAudioPermissionGranted by remember { mutableStateOf(false) }
+//    val context = LocalContext.current
+//
+//    val recordAudioPermissionLauncher =
+//        rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+//                permissionGranted ->
+//            if (permissionGranted) {
+//                recordAudioPermissionGranted = true
+//            }
+//        }
+//
+//    LaunchedEffect(Unit) {
+//        // Check permission
+//        when (PackageManager.PERMISSION_GRANTED) {
+//            // Already got permission.
+//            ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) -> {
+//                recordAudioPermissionGranted = true
+//            }
+//
+//            // Otherwise, ask for permission
+//            else -> {
+//                recordAudioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+//            }
+//        }
+//    }
+//
+//    if (recordAudioPermissionGranted) {
+//        Box(
+//            modifier =
+//                modifier.then(
+//                    if (enabled) {
+//                        Modifier.pointerInput(Unit) {
+//                            detectTapGestures(
+//                                onPress = {
+//                                    viewModel.startSpeechRecognition(
+//                                        onDone = onDone,
+//                                        onAmplitudeChanged = onAmplitudeChanged,
+//                                    )
+//                                    try {
+//                                        awaitRelease()
+//                                    } catch (e: CancellationException) {
+//                                        // Move out of the button to cancel it.
+//                                        viewModel.cancelSpeechRecognition()
+//                                        return@detectTapGestures
+//                                    }
+//
+//                                    // Release to stop recognition.
+//                                    viewModel.stopSpeechRecognition()
+//                                }
+//                            )
+//                        }
+//                    } else {
+//                        Modifier
+//                    }
+//                )
+//                .clip(CircleShape)
+//                .graphicsLayer { alpha = if (enabled) 1f else 0.5f }
+//                .background(Color.Red), // Using a default color now
+//            contentAlignment = Alignment.Center,
+//        ) {
+//            Text(
+//                stringResource(if (uiState.recognizing) R.string.listening else R.string.hold_down_to_talk),
+//                color = Color.White,
+//            )
+//        }
+//    }
 }

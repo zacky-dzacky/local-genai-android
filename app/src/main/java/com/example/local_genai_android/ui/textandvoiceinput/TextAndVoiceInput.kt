@@ -39,6 +39,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.local_genai_android.R
+import com.example.local_genai_android.shared.HoldToDictateViewModel
+
 //import com.example.local_genai_android.ui.theme.HoldToDictateViewModel
 
 @Composable
