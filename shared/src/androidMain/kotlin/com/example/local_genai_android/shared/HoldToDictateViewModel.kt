@@ -13,12 +13,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 private const val AUDIO_METER_MIN_DB = -2.0f
 private const val AUDIO_METER_MAX_DB = 100.0f
 
-actual class HoldToDictateViewModel actual constructor(private val appContext: AppContext) : ViewModel(), RecognitionListener {
+actual class HoldToDictateViewModel actual constructor(
+    private val appContext: AppContext
+) : ViewModel(), RecognitionListener, KoinComponent {
 
+    private val context: Context by inject()
     private val speechRecognizer: SpeechRecognizer
     private val recognizerIntent: Intent
     private var onRecognitionDone: ((String) -> Unit)? = null
@@ -28,7 +33,7 @@ actual class HoldToDictateViewModel actual constructor(private val appContext: A
     actual val uiState = _uiState.asStateFlow()
 
     init {
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(appContext as Context).apply {
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context).apply {
             setRecognitionListener(this@HoldToDictateViewModel)
         }
 

@@ -63,6 +63,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.material.icon.extended)
 
+    implementation(libs.moko.mvvm.core)
+    implementation(libs.moko.mvvm.compose)
+    implementation(libs.moko.mvvm.flow)
+
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
 
