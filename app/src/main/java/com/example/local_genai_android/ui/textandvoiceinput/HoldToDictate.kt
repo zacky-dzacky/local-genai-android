@@ -29,7 +29,6 @@ import com.example.local_genai_android.R
 import com.example.local_genai_android.shared.HoldToDictateViewModel
 import kotlin.coroutines.cancellation.CancellationException
 
-@Deprecated("Use HoldToDictateViewModel instead")
 @Composable
 fun HoldToDictate(
     viewModel: HoldToDictateViewModel,
