@@ -60,7 +60,7 @@ object LLMChatModelHelper {
             }
         Log.d(TAG, "Preferred backend: $preferredBackend")
 
-        val modelPath = model.getPath(context = context)
+        val modelPath = model.getPath()
         val engineConfig =
             EngineConfig(
                 modelPath = modelPath,

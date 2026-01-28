@@ -16,8 +16,7 @@
 
 package com.example.local_genai_android.shared.data
 
-import android.content.Context
-import java.io.File
+import com.example.local_genai_android.shared.util.getModelPath
 
 data class ModelDataFile(
   val name: String,
@@ -244,33 +243,8 @@ data class Model(
     this.totalBytes = this.sizeInBytes + this.extraDataFiles.sumOf { it.sizeInBytes }
   }
 
-  fun getPath(context: Context, fileName: String = downloadFileName): String {
-    if (imported) {
-      return listOf(context.getExternalFilesDir(null)?.absolutePath ?: "", fileName)
-        .joinToString(File.separator)
-    }
-
-    if (localModelFilePathOverride.isNotEmpty()) {
-      return localModelFilePathOverride
-    }
-
-    if (localFileRelativeDirPathOverride.isNotEmpty()) {
-      return listOf(
-          context.getExternalFilesDir(null)?.absolutePath ?: "",
-          localFileRelativeDirPathOverride,
-          fileName,
-        )
-        .joinToString(File.separator)
-    }
-
-    val baseDir =
-      listOf(context.getExternalFilesDir(null)?.absolutePath ?: "", normalizedName, version)
-        .joinToString(File.separator)
-    return if (this.isZip && this.unzipDir.isNotEmpty()) {
-      listOf(baseDir, this.unzipDir).joinToString(File.separator)
-    } else {
-      listOf(baseDir, fileName).joinToString(File.separator)
-    }
+  fun getPath(fileName: String = downloadFileName): String {
+      return getModelPath(fileName, imported, localModelFilePathOverride, localFileRelativeDirPathOverride, normalizedName, version)
   }
 
   fun getIntConfigValue(key: ConfigKey, defaultValue: Int = 0): Int {
