@@ -13,7 +13,15 @@ class Provider: KoinComponent {
     }
 }
 
-actual fun getModelPath(filename: String, imported: Boolean, localModelFilePathOverride: String, localFileRelativeDirPathOverride: String, normalizedName: String, version: String): String {
+actual fun getModelPath(
+    filename: String,
+    imported: Boolean,
+    localModelFilePathOverride: String,
+    localFileRelativeDirPathOverride: String,
+    normalizedName: String,
+    version: String,
+    isZip: Boolean,
+    unzipDir: String): String {
     val context: Context = Provider().getContext()
 
     if (imported) {
@@ -37,8 +45,8 @@ actual fun getModelPath(filename: String, imported: Boolean, localModelFilePathO
     val baseDir =
         listOf(context.getExternalFilesDir(null)?.absolutePath ?: "", normalizedName, version)
             .joinToString(File.separator)
-    return if (this.isZip && this.unzipDir.isNotEmpty()) {
-        listOf(baseDir, this.unzipDir).joinToString(File.separator)
+    return if (isZip && unzipDir.isNotEmpty()) {
+        listOf(baseDir, unzipDir).joinToString(File.separator)
     } else {
         listOf(baseDir, filename).joinToString(File.separator)
     }

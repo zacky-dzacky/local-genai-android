@@ -244,7 +244,15 @@ data class Model(
   }
 
   fun getPath(fileName: String = downloadFileName): String {
-      return getModelPath(fileName, imported, localModelFilePathOverride, localFileRelativeDirPathOverride, normalizedName, version)
+      return getModelPath(
+          fileName,
+          imported,
+          localModelFilePathOverride,
+          localFileRelativeDirPathOverride,
+          normalizedName,
+          version,
+          isZip,
+          unzipDir)
   }
 
   fun getIntConfigValue(key: ConfigKey, defaultValue: Int = 0): Int {
