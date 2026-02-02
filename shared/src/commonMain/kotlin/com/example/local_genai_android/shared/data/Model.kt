@@ -285,7 +285,7 @@ data class Model(
 
   private fun getTypedConfigValue(key: ConfigKey, valueType: ValueType, defaultValue: Any): Any {
     return convertValueToTargetType(
-      value = configValues.getOrDefault(key.label, defaultValue),
+      value = configValues.get(key.label) ?: defaultValue,
       valueType = valueType,
     )
   }

@@ -8,9 +8,6 @@ import java.io.File
 
 class Provider: KoinComponent {
     val context: Context by inject()
-    fun getContext(): Context {
-        return context
-    }
 }
 
 actual fun getModelPath(
@@ -22,7 +19,7 @@ actual fun getModelPath(
     version: String,
     isZip: Boolean,
     unzipDir: String): String {
-    val context: Context = Provider().getContext()
+    val context: Context = Provider().context
 
     if (imported) {
         return listOf(context.getExternalFilesDir(null)?.absolutePath ?: "", filename)
