@@ -2,7 +2,9 @@ package com.example.local_genai_android
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -15,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.example.local_genai_android.shared.HoldToDictateViewModel
 import com.example.local_genai_android.shared.viewmodel.SharedViewModel
@@ -27,17 +30,27 @@ import androidx.compose.material3.SnackbarHost
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedViewModel: SharedViewModel by inject()
+        val holdToDictateViewModel: HoldToDictateViewModel by inject()
+
         setContent {
-            val sharedViewModel: SharedViewModel by inject()
-            val holdToDictateViewModel: HoldToDictateViewModel by inject()
             LocalgenaiandroidTheme {
                 val snackbarHostState = remember { SnackbarHostState() }
+                val coroutineScope = rememberCoroutineScope()
+
+                val filePickerLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.GetContent(),
+                    onResult = { uri ->
+                        // Handle the selected file URI
+                    }
+                )
+
                 Scaffold(
                     topBar = {
                         TopAppBar(
                             title = { Text("Local GenAI") },
                             actions = {
-                                Button(onClick = { /* TODO: Add action */ }) {
+                                Button(onClick = { filePickerLauncher.launch("*/*") }) {
                                     Text("New Button")
                                 }
                             }
